@@ -32,11 +32,11 @@ def main():
     for dataset in datasets:
         print(dataset)
 
-        folder1 = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/root'
-        folder2 = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/apical_lesion'
+        folder1 = '/Users/User/Desktop/perso/tooth-detection/dataset/root'
+        folder2 = '/Users/User/Desktop/perso/tooth-detection/dataset/apical_lesion'
         merge_datasets(dataset, folder1, folder2, output_folder)
 
-        folder1 = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/implant-restoration-endodontic'
+        folder1 = '/Users/User/Desktop/perso/tooth-detection/dataset/implant-restoration-endodontic'
         merge_datasets(dataset, folder1, output_folder, output_folder)
 
 output_folder = '/Users/User/Desktop/perso/tooth-detection/dataset/root-implant-restoration-endodontic-apical_lesion'
