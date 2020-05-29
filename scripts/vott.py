@@ -13,8 +13,15 @@ from object_detection.utils import ops as utils_ops
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
+global clim 
+global tgs 
+
+#image preprocessing parameters:
+clim = 2.0
+tgs = 16
+
 def preprocess_image(img):
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(16,16))
+    clahe = cv2.createCLAHE(clipLimit=clim, tileGridSize=(tgs,tgs))
     cl = clahe.apply(img)
     image = Image.fromarray(cl)
     im = Image.new('RGB', image.size)
@@ -54,9 +61,10 @@ def run_inference_for_single_image(image, graph):
   return output_dict
 
 
-PATH_TO_FROZEN_GRAPH = '/Users/clementjoudet/Desktop/dev/tooth-detection/models/transfer/inference/frozen_inference_graph.pb'
-PATH_TO_LABELS = '/Users/clementjoudet/Desktop/dev/tooth-detection/data/golden_label_map.pbtxt'
-PATH_TO_TEST_IMAGES_DIR = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/TAGS MANQUANTS/brazil_cat10'
+PATH_TO_FROZEN_GRAPH = '/Users/User/Desktop/dev/tooth-detection/models/transfer/inference/frozen_inference_graph.pb'
+PATH_TO_LABELS = '/Users/User/Desktop/dev/tooth-detection/data/golden_label_map.pbtxt'
+PATH_TO_TEST_IMAGES_DIR = '/Users/User/Desktop/perso/tooth-detection/dataset/TAGS MANQUANTS/brazil_cat10'
+
 TEST_IMAGE_PATHS = sorted(glob.glob(PATH_TO_TEST_IMAGES_DIR + '/*.jpg'))
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
 
@@ -89,7 +97,9 @@ for image_path in TEST_IMAGE_PATHS:
     detection_boxes[:, 1] = detection_boxes[:, 1] * width
     detection_boxes[:, 3] = detection_boxes[:, 3] * width
     detection_boxes = detection_boxes.astype(int)
+    
     SCORE_THRESHOLD = 0.5
+    
     vott_output[image_path.split('/')[-1]] = []
     for i in range(len(detection_boxes)):
         if output_dict['detection_scores'][i] > SCORE_THRESHOLD:
