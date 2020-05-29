@@ -2,7 +2,7 @@
 
 ```
 python ../models/research/object_detection/model_main.py \
-    --pipeline_config_path=/Users/clementjoudet/Desktop/dev/tooth-detection/models/transfer/faster_rcnn_resnet50_coco.config \
+    --pipeline_config_path=/Users/User/Desktop/dev/tooth-detection/models/transfer/faster_rcnn_resnet50_coco.config \
     --model_dir=/Users/clementjoudet/Desktop/dev/tooth-detection/models/transfer/new_version \
     --num_train_steps=100000 \
     --alsologtostderr
@@ -18,7 +18,7 @@ gcloud ml-engine jobs submit training tooth_jood_`date +%Y-%m-%d:%H-%M-%S` \
     --packages dist/object_detection-0.1.tar.gz,slim/dist/slim-0.1.tar.gz,/tmp/pycocotools/pycocotools-2.0.tar.gz \
     --module-name object_detection.model_main \
     --region europe-west1 \
-    --config /Users/clementjoudet/Desktop/dev/tooth-detection/models/cloud/cloud.yml \
+    --config /Users/User/Desktop/dev/tooth-detection/models/cloud/cloud.yml \
     -- \
     --model_dir=gs://tooth-jood/new/ \
     --pipeline_config_path=gs://tooth-jood/index.config
@@ -28,9 +28,9 @@ Export model for inference
 ```
 # From tensorflow/models/research/
 INPUT_TYPE=image_tensor
-PIPELINE_CONFIG_PATH=/Users/clementjoudet/Desktop/dev/tooth-detection/models/index/index_local.config
-TRAINED_CKPT_PREFIX=/Users/clementjoudet/Desktop/dev/tooth-detection/models/index/cloud/new/model.ckpt-13842
-EXPORT_DIR=/Users/clementjoudet/Desktop/dev/tooth-detection/models/index/cloud/inference
+PIPELINE_CONFIG_PATH=/Users/User/Desktop/dev/tooth-detection/models/index/index_local.config
+TRAINED_CKPT_PREFIX=/Users/User/Desktop/dev/tooth-detection/models/index/cloud/new/model.ckpt-13842
+EXPORT_DIR=/Users/User/Desktop/dev/tooth-detection/models/index/cloud/inference
 python object_detection/export_inference_graph.py \
     --input_type=${INPUT_TYPE} \
     --pipeline_config_path=${PIPELINE_CONFIG_PATH} \
