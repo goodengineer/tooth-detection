@@ -13,6 +13,8 @@ from object_detection.utils import dataset_util
 
 
 RANDOM_SEED = 42
+CL = 2.0
+TGS = 16
 flags = tf.app.flags
 flags.DEFINE_string('data_folder', 'data', 'Root directory to raw PASCAL VOC datasets.')
 flags.DEFINE_float('train_eval_ratio', 0.8, 'Ratio of training examples from all examples.')
@@ -24,7 +26,7 @@ def create_directory_if_not_exists(directory):
 
 def preprocess_image(image_path, horizontal_flip=False):
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(16,16))
+    clahe = cv2.createCLAHE(clipLimit=CL, tileGridSize=(TGS,TGS))
     cl = clahe.apply(img)
     if horizontal_flip:
         cl = cv2.flip(cl, 1)
