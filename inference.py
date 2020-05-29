@@ -8,6 +8,8 @@ import json
 import cv2
 from PIL import Image
 
+CL = 2.0
+TGS = 16
 from object_detection.utils import ops as utils_ops
 from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
@@ -22,7 +24,7 @@ flags.DEFINE_boolean('no_preprocess', False, '')
 FLAGS = flags.FLAGS
 
 def preprocess_image(img):
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(16,16))
+    clahe = cv2.createCLAHE(clipLimit=CL, tileGridSize=(TGS,TGS))
     cl = clahe.apply(img)
     image = Image.fromarray(cl)
     if flags.FLAGS.no_preprocess:
