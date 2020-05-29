@@ -3,7 +3,7 @@
 ```
 python ../models/research/object_detection/model_main.py \
     --pipeline_config_path=/Users/User/Desktop/dev/tooth-detection/models/transfer/faster_rcnn_resnet50_coco.config \
-    --model_dir=/Users/clementjoudet/Desktop/dev/tooth-detection/models/transfer/new_version \
+    --model_dir=/Users/User/Desktop/dev/tooth-detection/models/transfer/new_version \
     --num_train_steps=100000 \
     --alsologtostderr
 ```
