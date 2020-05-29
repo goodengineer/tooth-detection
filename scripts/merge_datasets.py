@@ -39,7 +39,7 @@ def main():
         folder1 = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/implant-restoration-endodontic'
         merge_datasets(dataset, folder1, output_folder, output_folder)
 
-output_folder = '/Users/clementjoudet/Desktop/perso/tooth-detection/dataset/root-implant-restoration-endodontic-apical_lesion'
+output_folder = '/Users/User/Desktop/perso/tooth-detection/dataset/root-implant-restoration-endodontic-apical_lesion'
 datasets = ['gonesse_x67', 'gonesse_x97', 'gonesse_x102', 'google_x90',
             'iran_x116', 'rothschild_x200', 'brazil_cat8', 'brazil_cat10']
 main()
